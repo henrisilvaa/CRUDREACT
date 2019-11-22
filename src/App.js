@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import Table from './componentes/Table'
+import Form from './componentes/Form'
+
 
 function App() {
   const [usuarios, setUsuarios] = useState([])
@@ -24,46 +27,12 @@ function App() {
   }
   return (
     <div>
-      <table>
-        <tr>
-          <th>Nome</th>  
-          <th>Telefone</th>
-          <th>E-mail</th>
-          <th>Ações</th>
-        </tr>
-        {usuarios.map((usuario, index) => (
-          <tr key={index}>
-            <td>{usuario.nome}</td>  
-            <td>{usuario.telefone}</td>
-            <td>{usuario.email}</td>
-            <td>
-              <button>Editar</button>
-              <button>Excluir</button>
-            </td>
-          </tr>
-        ))}
-      </table>
-      <form key={usuarios.length}>
-        <label>Nome</label>
-        <input
-          type="text" 
-          name="nome" 
-          onChange={pegarInformacao} 
-        />
-        <label>Telefone</label>
-        <input 
-          type="text" 
-          name="telefone" 
-          onChange={pegarInformacao} 
-        />
-        <label>E-mail</label>
-        <input 
-          type="email" 
-          name="email" 
-          onChange={pegarInformacao} 
-        />
-        <button onClick={salvarUsuario}>Salvar</button>
-      </form>
+      <Table usuarios={usuarios} />
+      <Form 
+        key={usuarios.length}
+        pegarInformacao={pegarInformacao}
+        salvarUsuario={salvarUsuario}
+      />
     </div>
   );
 }
