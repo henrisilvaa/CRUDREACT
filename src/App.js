@@ -25,9 +25,21 @@ function App() {
     ])
     setForm({})
   }
+
+  const excluirUsuario = (pos) => {
+    setUsuarios(
+      usuarios.filter(
+        (usuario, index) => index !== pos
+      )
+    )
+  }
+
   return (
     <div>
-      <Table usuarios={usuarios} />
+      <Table 
+        usuarios={usuarios} 
+        excluirUsuario={excluirUsuario}
+      />
       <Form 
         key={usuarios.length}
         pegarInformacao={pegarInformacao}

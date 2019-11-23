@@ -4,10 +4,10 @@ import './style.css'
 const Table = props => (
     <table>
         <tr>
-        <th>Nome</th>  
-        <th>Telefone</th>
-        <th>E-mail</th>
-        <th>Ações</th>
+            <th>Nome</th>  
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Ações</th>
         </tr>
         {props.usuarios.map((usuario, index) => (
         <tr key={index}>
@@ -15,8 +15,13 @@ const Table = props => (
             <td>{usuario.telefone}</td>
             <td>{usuario.email}</td>
             <td>
-            <button>Editar</button>
-            <button>Excluir</button>
+                <button>Editar</button>
+                <button onClick={
+                        () => props.excluirUsuario(index)
+                    }
+                >
+                    Excluir
+                </button>
             </td>
         </tr>
         ))}
