@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.css'
+import Button from '../Button'
 
 const Table = props => (
     <table>
@@ -18,19 +19,19 @@ const Table = props => (
                     <td>{usuario.telefone}</td>
                     <td>{usuario.email}</td>
                     <td>
-                        <button onClick={
+                        <Button onClick={
                                 () => props.editarUsuario(index)
                             }
                         >
                             Editar
-                        </button>
+                        </Button>
 
-                        <button onClick={
+                        <Button onClick={
                                 () => props.excluirUsuario(index)
                             }
                         >
                             Excluir
-                        </button>
+                        </Button>
                     </td>
                 </tr>
             ))}

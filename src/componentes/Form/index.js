@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from '../Button'
+import './style.css'
 
 const Form = props => (
     <form>
@@ -26,17 +28,17 @@ const Form = props => (
       {
         props.dadosForm.editar 
           ?
-            <button 
+            <Button 
               onClick={props.salvarEditado}
             >
               Editar
-            </button>
+            </Button>
           :
-            <button 
+            <Button 
               onClick={props.salvarUsuario}
             >
               Salvar
-            </button> 
+            </Button> 
       }  
     </form>
 )
