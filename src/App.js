@@ -6,7 +6,13 @@ import Form from './componentes/Form'
 
 function App() {
   const [usuarios, setUsuarios] = useState([])
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState({
+      editar: false,
+      nome: "",
+      telefone: "",
+      email: ""
+  })
+  const [posicao, setPosicao] = useState(null)
 
   const pegarInformacao = (event) => {
     const valor = event.target.value
@@ -23,7 +29,12 @@ function App() {
       ...usuarios,
       form
     ])
-    setForm({})
+    setForm({
+      editar: false,
+      nome: "",
+      telefone: "",
+      email: ""
+    })
   }
 
   const excluirUsuario = (pos) => {
@@ -34,16 +45,47 @@ function App() {
     )
   }
 
+  const editarUsuario = (pos) => {
+    const procurarUsuario = usuarios.find(
+      (usuario, index) => index === pos
+    )
+    setForm({
+      ...procurarUsuario,
+      editar: true
+    })
+    setPosicao(pos)
+  }
+
+  const salvarEditado = (event) => {
+    event.preventDefault()
+    setUsuarios(
+      usuarios.map(
+        (usuario, index) => index === posicao  
+          ? form
+          : usuario
+      )
+    )
+    setPosicao(null)
+    setForm({
+      editar: false,
+      nome: "",
+      telefone: "",
+      email: ""
+    })
+  }
+
   return (
     <div>
       <Table 
         usuarios={usuarios} 
         excluirUsuario={excluirUsuario}
+        editarUsuario={editarUsuario}
       />
       <Form 
-        key={usuarios.length}
+        dadosForm={form}
         pegarInformacao={pegarInformacao}
         salvarUsuario={salvarUsuario}
+        salvarEditado={salvarEditado}
       />
     </div>
   );
